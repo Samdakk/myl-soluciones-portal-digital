@@ -3,7 +3,7 @@ import { MainLayout } from "@/components/layouts/MainLayout";
 import { ServiceCard } from "@/components/ServiceCard";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { HardDrive, Computer, Wrench, Settings } from "lucide-react";
+import { HardDrive, Computer, Wrench, Settings, Brush } from "lucide-react";
 
 const Index = () => {
   return (
@@ -49,7 +49,7 @@ const Index = () => {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6">
             <ServiceCard
               title="Reparación"
               description="Solucionamos problemas y averías de tus dispositivos con diagnósticos precisos."
@@ -70,9 +70,16 @@ const Index = () => {
             />
             <ServiceCard
               title="Limpieza"
-              description="Eliminamos polvo, suciedad y reemplazamos pastas térmicas para evitar sobrecalentamientos."
+              description="Eliminamos polvo y suciedad para evitar sobrecalentamientos y fallas."
               icon={<HardDrive size={24} />}
               link="/servicios#limpieza"
+            />
+            <ServiceCard
+              title="Estética"
+              description="Restauramos la apariencia de tus dispositivos para que luzcan como nuevos."
+              icon={<Brush size={24} />}
+              link="/servicios#estetica"
+              className="lg:col-span-2 xl:col-span-1"
             />
           </div>
           

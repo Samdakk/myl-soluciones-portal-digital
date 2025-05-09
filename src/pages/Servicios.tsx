@@ -1,6 +1,5 @@
-
 import { MainLayout } from "@/components/layouts/MainLayout";
-import { Wrench, Computer, HardDrive, Settings } from "lucide-react";
+import { Wrench, Computer, HardDrive, Settings, Brush } from "lucide-react";
 
 const Servicios = () => {
   return (
@@ -206,6 +205,52 @@ const Servicios = () => {
                       Mejor refrigeración, menor ruido, mayor durabilidad de componentes y prevención de sobrecalentamiento.
                     </p>
                   </div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Aesthetic Repair Service - NEW */}
+            <div id="estetica" className="scroll-mt-20">
+              <div className="flex flex-col md:flex-row gap-8 items-center">
+                <div className="md:w-1/2 order-2 md:order-1">
+                  <span className="text-myl text-sm font-medium mb-2 inline-block">APARIENCIA</span>
+                  <h2 className="text-3xl font-bold mb-4">Reparación de Estética</h2>
+                  <p className="text-gray-300 mb-6">
+                    Restauramos la apariencia de tus dispositivos para que luzcan como nuevos. Reparamos daños estéticos, rayones, decoloraciones y problemas cosméticos que afectan la apariencia de tus consolas, computadoras y electrodomésticos.
+                  </p>
+                  
+                  <ul className="space-y-3 mb-6">
+                    <li className="flex items-start gap-2">
+                      <span className="text-myl mt-1">✓</span>
+                      <span>Reparación de carcasas y cubiertas</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-myl mt-1">✓</span>
+                      <span>Eliminación de rayones superficiales</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-myl mt-1">✓</span>
+                      <span>Restauración de color y brillo</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-myl mt-1">✓</span>
+                      <span>Reemplazo de partes estéticas dañadas</span>
+                    </li>
+                  </ul>
+                  
+                  <div className="glass p-4 rounded-lg border border-myl/30">
+                    <h4 className="text-sm font-semibold text-myl mb-2">TIPOS DE REPARACIONES</h4>
+                    <p className="text-gray-400 text-sm">
+                      Ofrecemos reparaciones estéticas para todo tipo de dispositivos, desde carcasas de consolas hasta gabinetes de PC y electrónicos varios.
+                    </p>
+                  </div>
+                </div>
+                <div className="md:w-1/2 order-1 md:order-2">
+                  <img 
+                    src="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?auto=format&fit=crop&q=80&w=800" 
+                    alt="Servicio de reparación estética"
+                    className="w-full h-64 md:h-80 object-cover rounded-lg glass border border-gray-800"
+                  />
                 </div>
               </div>
             </div>
