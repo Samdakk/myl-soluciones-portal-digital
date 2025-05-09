@@ -71,91 +71,93 @@ const Dashboard = () => {
   
   return (
     <DashboardLayout>
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">Bienvenido{user.name ? `, ${user.name}` : ""}</h1>
-        <p className="text-gray-400">Aquí puedes ver el estado de tus servicios y solicitar nuevos.</p>
-      </div>
-      
-      {/* Countdown Timer (si hay un servicio en progreso) */}
-      {inProgressService && inProgressService.estimatedCompletionDate && (
+      <div className="max-w-5xl mx-auto">
         <div className="mb-8">
-          <CountdownTimer targetDate={new Date(inProgressService.estimatedCompletionDate)} />
+          <h1 className="text-3xl font-bold mb-4 pb-2 border-b border-gray-800">Bienvenido{user.name ? `, ${user.name}` : ""}</h1>
+          <p className="text-gray-400">Aquí puedes ver el estado de tus servicios y solicitar nuevos.</p>
         </div>
-      )}
-      
-      {/* Dashboard Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <DashboardCard
-          icon={<Computer size={28} />}
-          title="Total de Servicios"
-          value={serviceRequests.length.toString()}
-        />
-        <DashboardCard
-          icon={<Wrench size={28} />}
-          title="En Progreso"
-          value={serviceRequests.filter(s => s.status === "in_progress").length.toString()}
-        />
-        <DashboardCard
-          icon={<Check size={28} />}
-          title="Completados"
-          value={serviceRequests.filter(s => s.status === "completed").length.toString()}
-        />
-      </div>
-      
-      {/* Service Requests */}
-      <h2 className="text-2xl font-semibold mb-4">Mis Servicios</h2>
-      
-      {serviceRequests.length === 0 ? (
-        <div className="glass p-6 rounded-lg border border-gray-800 text-center">
-          <AlertCircle className="mx-auto h-12 w-12 text-gray-400 mb-3" />
-          <h3 className="text-lg font-medium mb-2">No hay servicios solicitados</h3>
-          <p className="text-gray-400 mb-4">
-            Aún no has solicitado ningún servicio técnico.
-          </p>
+        
+        {/* Countdown Timer (si hay un servicio en progreso) */}
+        {inProgressService && inProgressService.estimatedCompletionDate && (
+          <div className="mb-8">
+            <CountdownTimer targetDate={new Date(inProgressService.estimatedCompletionDate)} />
+          </div>
+        )}
+        
+        {/* Dashboard Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <DashboardCard
+            icon={<Computer size={28} />}
+            title="Total de Servicios"
+            value={serviceRequests.length.toString()}
+          />
+          <DashboardCard
+            icon={<Wrench size={28} />}
+            title="En Progreso"
+            value={serviceRequests.filter(s => s.status === "in_progress").length.toString()}
+          />
+          <DashboardCard
+            icon={<Check size={28} />}
+            title="Completados"
+            value={serviceRequests.filter(s => s.status === "completed").length.toString()}
+          />
+        </div>
+        
+        {/* Service Requests */}
+        <h2 className="text-2xl font-semibold mb-4 pb-2 border-b border-gray-800">Mis Servicios</h2>
+        
+        {serviceRequests.length === 0 ? (
+          <div className="glass p-6 rounded-lg border border-gray-800 text-center">
+            <AlertCircle className="mx-auto h-12 w-12 text-gray-400 mb-3" />
+            <h3 className="text-lg font-medium mb-2">No hay servicios solicitados</h3>
+            <p className="text-gray-400 mb-4">
+              Aún no has solicitado ningún servicio técnico.
+            </p>
+            <Button className="bg-myl hover:bg-myl-600 text-black">
+              Solicitar nuevo servicio
+            </Button>
+          </div>
+        ) : (
+          <div className="space-y-4">
+            {serviceRequests.map(service => (
+              <div key={service.id} className="glass p-4 rounded-lg border border-gray-800">
+                <div className="flex flex-col md:flex-row items-start md:items-center justify-between">
+                  <div>
+                    <div className="flex items-center gap-3">
+                      <StatusBadge status={service.status} />
+                      <h3 className="font-medium">{service.type}</h3>
+                    </div>
+                    <p className="text-gray-400 text-sm mt-1">
+                      Dispositivo: {service.device}
+                    </p>
+                    <p className="text-gray-400 text-sm">
+                      ID de servicio: {service.id}
+                    </p>
+                  </div>
+                  
+                  <div className="mt-4 md:mt-0 flex items-center gap-3">
+                    {service.status === "in_progress" && (
+                      <div className="text-xs bg-myl/10 text-myl px-3 py-1 rounded-full flex items-center">
+                        <Timer size={14} className="mr-1" />
+                        En progreso
+                      </div>
+                    )}
+                    <Button size="sm" variant="outline" className="border-myl/50">
+                      Ver detalles
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+        
+        {/* New Service Request Button */}
+        <div className="mt-8">
           <Button className="bg-myl hover:bg-myl-600 text-black">
             Solicitar nuevo servicio
           </Button>
         </div>
-      ) : (
-        <div className="space-y-4">
-          {serviceRequests.map(service => (
-            <div key={service.id} className="glass p-4 rounded-lg border border-gray-800">
-              <div className="flex flex-col md:flex-row items-start md:items-center justify-between">
-                <div>
-                  <div className="flex items-center gap-3">
-                    <StatusBadge status={service.status} />
-                    <h3 className="font-medium">{service.type}</h3>
-                  </div>
-                  <p className="text-gray-400 text-sm mt-1">
-                    Dispositivo: {service.device}
-                  </p>
-                  <p className="text-gray-400 text-sm">
-                    ID de servicio: {service.id}
-                  </p>
-                </div>
-                
-                <div className="mt-4 md:mt-0 flex items-center gap-3">
-                  {service.status === "in_progress" && (
-                    <div className="text-xs bg-myl/10 text-myl px-3 py-1 rounded-full flex items-center">
-                      <Timer size={14} className="mr-1" />
-                      En progreso
-                    </div>
-                  )}
-                  <Button size="sm" variant="outline" className="border-myl/50">
-                    Ver detalles
-                  </Button>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
-      
-      {/* New Service Request Button */}
-      <div className="mt-8">
-        <Button className="bg-myl hover:bg-myl-600 text-black">
-          Solicitar nuevo servicio
-        </Button>
       </div>
     </DashboardLayout>
   );
