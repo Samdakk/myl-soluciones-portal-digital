@@ -3,7 +3,8 @@ import react from "@vitejs/plugin-react-swc";
 import path from "path";
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }: { mode: string }) => ({
+export default defineConfig(({ mode }: { mode: string }) => ({  
+  base: "/myl-soluciones-portal-digital/",
   server: {
     host: "::",
     port: 8080,
