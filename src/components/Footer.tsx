@@ -4,9 +4,9 @@ import { Phone, Mail, MessageCircle } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="bg-black/60 mt-20 pt-10 pb-6 border-t border-gray-800">
+    <footer className="bg-black/60 mt-12 sm:mt-20 pt-8 sm:pt-10 pb-6 border-t border-gray-800">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 sm:gap-10">
           <div>
             <Link to="/" className="inline-block">
               <div className="flex items-center gap-2">
@@ -20,7 +20,7 @@ export function Footer() {
             </p>
           </div>
           
-          <div>
+          <div className="sm:text-center md:text-left">
             <h3 className="text-xl font-semibold mb-4">Enlaces</h3>
             <ul className="space-y-2">
               <li>
@@ -46,18 +46,18 @@ export function Footer() {
             </ul>
           </div>
           
-          <div>
+          <div className="sm:text-center md:text-left">
             <h3 className="text-xl font-semibold mb-4">Contacto</h3>
             <ul className="space-y-3">
-              <li className="flex items-center gap-3">
+              <li className="flex items-center gap-3 justify-start sm:justify-center md:justify-start">
                 <Phone size={18} className="text-myl" />
                 <span className="text-gray-400">+123 456 7890</span>
               </li>
-              <li className="flex items-center gap-3">
+              <li className="flex items-center gap-3 justify-start sm:justify-center md:justify-start">
                 <Mail size={18} className="text-myl" />
                 <span className="text-gray-400">info@mylsoluciones.com</span>
               </li>
-              <li className="flex items-center gap-3">
+              <li className="flex items-center gap-3 justify-start sm:justify-center md:justify-start">
                 <MessageCircle size={18} className="text-myl" />
                 <span className="text-gray-400">Chatea con nosotros</span>
               </li>

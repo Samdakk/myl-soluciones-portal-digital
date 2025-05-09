@@ -1,5 +1,5 @@
 
-import { ReactNode, useState } from "react";
+import { ReactNode, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Navbar } from "@/components/Navbar";
@@ -10,7 +10,8 @@ import {
   Settings, 
   ChevronLeft, 
   ChevronRight,
-  LogOut
+  LogOut,
+  Menu
 } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/utils";
@@ -22,6 +23,13 @@ interface DashboardLayoutProps {
 export function DashboardLayout({ children }: DashboardLayoutProps) {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const isMobile = useIsMobile();
+  
+  // Auto-collapse sidebar on mobile
+  useEffect(() => {
+    if (isMobile) {
+      setSidebarCollapsed(true);
+    }
+  }, [isMobile]);
   
   return (
     <div className="min-h-screen flex flex-col">
@@ -85,6 +93,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
             <button 
               onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
               className="absolute -right-3 top-6 w-6 h-6 rounded-full bg-muted border border-gray-700 flex items-center justify-center text-myl hover:border-myl/50"
+              aria-label={sidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"}
             >
               {sidebarCollapsed ? <ChevronRight size={14} /> : <ChevronLeft size={14} />}
             </button>
@@ -94,8 +103,9 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
         {/* Mobile overlay */}
         {isMobile && !sidebarCollapsed && (
           <div 
-            className="fixed inset-0 bg-black/50 z-30" 
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-30" 
             onClick={() => setSidebarCollapsed(true)}
+            aria-label="Close sidebar"
           />
         )}
         
@@ -104,18 +114,19 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
           <button 
             onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
             className={cn(
-              "fixed bottom-4 left-4 z-50 w-10 h-10 rounded-full glass border border-gray-700 flex items-center justify-center text-myl hover:border-myl/50",
+              "fixed bottom-4 left-4 z-50 w-12 h-12 rounded-full glass border border-gray-700 flex items-center justify-center text-myl hover:border-myl/50 shadow-lg",
               !sidebarCollapsed && "left-[17rem]"
             )}
+            aria-label={sidebarCollapsed ? "Open menu" : "Close menu"}
           >
-            {sidebarCollapsed ? <ChevronRight size={20} /> : <ChevronLeft size={20} />}
+            {sidebarCollapsed ? <Menu size={20} /> : <ChevronLeft size={20} />}
           </button>
         )}
         
         {/* Main content */}
         <div 
           className={cn(
-            "flex-grow transition-all duration-300 pt-6 pb-12",
+            "flex-grow transition-all duration-300 pt-4 sm:pt-6 pb-8 sm:pb-12",
             !isMobile && (sidebarCollapsed ? "ml-16" : "ml-64")
           )}
         >

@@ -17,20 +17,20 @@ const Index = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-2xl">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
               Soluciones técnicas <span className="text-myl text-glow">profesionales</span>
             </h1>
-            <p className="text-xl md:text-2xl text-gray-300 mb-8">
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-8">
               Servicio especializado en reparación, optimización y mantenimiento de consolas, computadoras y electrodomésticos.
             </p>
             <div className="flex flex-wrap gap-4">
               <Link to="/servicios">
-                <Button className="bg-myl text-black hover:bg-myl-600 px-6 py-6 text-lg">
+                <Button className="bg-myl text-black hover:bg-myl-600 px-4 sm:px-6 py-5 sm:py-6 text-base sm:text-lg">
                   Nuestros servicios
                 </Button>
               </Link>
               <Link to="/contacto">
-                <Button variant="outline" className="border-white/20 hover:border-white px-6 py-6 text-lg">
+                <Button variant="outline" className="border-white/20 hover:border-white px-4 sm:px-6 py-5 sm:py-6 text-base sm:text-lg">
                   Contáctanos
                 </Button>
               </Link>
@@ -40,16 +40,16 @@ const Index = () => {
       </section>
       
       {/* Services Preview */}
-      <section className="py-20">
+      <section className="py-12 sm:py-16 md:py-20">
         <div className="container mx-auto px-4">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl font-bold mb-4">Nuestros Servicios</h2>
+          <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-4">Nuestros Servicios</h2>
             <p className="text-gray-400">
               En MyL Soluciones ofrecemos una amplia gama de servicios técnicos para tus dispositivos electrónicos y electrodomésticos.
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-6">
             <ServiceCard
               title="Reparación"
               description="Solucionamos problemas y averías de tus dispositivos con diagnósticos precisos."
@@ -79,11 +79,11 @@ const Index = () => {
               description="Restauramos la apariencia de tus dispositivos para que luzcan como nuevos."
               icon={<Brush size={24} />}
               link="/servicios#estetica"
-              className="lg:col-span-2 xl:col-span-1"
+              className="sm:col-span-2 lg:col-span-3 xl:col-span-1"
             />
           </div>
           
-          <div className="mt-12 text-center">
+          <div className="mt-8 sm:mt-12 text-center">
             <Link to="/servicios">
               <Button variant="outline" className="border-myl/50 hover:border-myl hover:bg-myl/10">
                 Ver todos los servicios
@@ -94,16 +94,16 @@ const Index = () => {
       </section>
       
       {/* Why Choose Us */}
-      <section className="py-20 bg-gradient-to-b from-transparent to-black/30">
+      <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-b from-transparent to-black/30">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">¿Por qué elegirnos?</h2>
+          <div className="max-w-3xl mx-auto text-center mb-10 sm:mb-16">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-4">¿Por qué elegirnos?</h2>
             <p className="text-gray-400">
               Experiencia, profesionalismo y compromiso con la satisfacción de nuestros clientes nos distinguen.
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
             <div className="glass p-6 rounded-lg border border-gray-800 hover:border-myl/30 transition-all">
               <div className="w-12 h-12 rounded-full glass flex items-center justify-center text-myl border border-myl/50 mb-4">
                 <span className="text-xl font-bold">1</span>
@@ -138,24 +138,24 @@ const Index = () => {
       </section>
       
       {/* CTA Section */}
-      <section className="py-20">
+      <section className="py-12 sm:py-16 md:py-20">
         <div className="container mx-auto px-4">
-          <div className="glass p-8 md:p-12 rounded-lg border border-gray-800">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="glass p-6 sm:p-8 md:p-12 rounded-lg border border-gray-800">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8">
               <div>
-                <h2 className="text-2xl md:text-3xl font-bold mb-2">¿Necesitas ayuda con tus dispositivos?</h2>
-                <p className="text-gray-300">
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2 text-center md:text-left">¿Necesitas ayuda con tus dispositivos?</h2>
+                <p className="text-gray-300 text-center md:text-left">
                   Contáctanos hoy mismo para obtener un diagnóstico profesional.
                 </p>
               </div>
-              <div className="flex gap-4">
-                <Link to="/contacto">
-                  <Button className="bg-myl text-black hover:bg-myl-600 px-6">
+              <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
+                <Link to="/contacto" className="w-full sm:w-auto">
+                  <Button className="w-full bg-myl text-black hover:bg-myl-600 px-6">
                     Contactar
                   </Button>
                 </Link>
-                <Link to="/servicios">
-                  <Button variant="outline" className="border-white/20 hover:border-white">
+                <Link to="/servicios" className="w-full sm:w-auto">
+                  <Button variant="outline" className="w-full border-white/20 hover:border-white">
                     Ver servicios
                   </Button>
                 </Link>
