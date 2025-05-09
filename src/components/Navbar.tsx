@@ -1,28 +1,14 @@
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import {
-  Menu,
-  X,
-  Home,
-  Wrench,
-  Users,
-  Phone,
-  LogIn,
-  LayoutDashboard
-} from "lucide-react";
+import { Menu, X, Home, Wrench, Users, Phone, LogIn, LayoutDashboard } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
-
 export function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const isMobile = useIsMobile();
-
   const toggleMenu = () => setMenuOpen(!menuOpen);
   const closeMenu = () => setMenuOpen(false);
-
-  return (
-    <header className="fixed top-0 left-0 right-0 z-50 glass animate-fade-in">
+  return <header className="fixed top-0 left-0 right-0 z-50 glass animate-fade-in">
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2" onClick={closeMenu}>
           <span className="text-xl font-bold text-myl text-glow">MyL</span>
@@ -30,15 +16,12 @@ export function Navbar() {
         </Link>
 
         {/* Mobile menu button */}
-        {isMobile && (
-          <button onClick={toggleMenu} className="text-gray-200 focus:outline-none">
+        {isMobile && <button onClick={toggleMenu} className="text-gray-200 focus:outline-none">
             {menuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        )}
+          </button>}
 
         {/* Desktop navigation */}
-        {!isMobile && (
-          <nav className="flex items-center gap-6">
+        {!isMobile && <nav className="flex items-center gap-6">
             <NavLinks />
             <div className="flex items-center gap-2">
               <Link to="/login">
@@ -53,13 +36,11 @@ export function Navbar() {
                 </Button>
               </Link>
             </div>
-          </nav>
-        )}
+          </nav>}
       </div>
 
       {/* Mobile menu */}
-      {isMobile && menuOpen && (
-        <div className="glass absolute top-full left-0 right-0 z-50 animate-fade-in">
+      {isMobile && menuOpen && <div className="glass absolute top-full left-0 right-0 z-50 animate-fade-in">
           <div className="container mx-auto px-4 py-4 flex flex-col gap-4">
             <MobileNavLinks onItemClick={closeMenu} />
             <div className="flex flex-col gap-2 mt-2">
@@ -76,16 +57,12 @@ export function Navbar() {
               </Link>
             </div>
           </div>
-        </div>
-      )}
-    </header>
-  );
+        </div>}
+    </header>;
 }
-
 function NavLinks() {
-  return (
-    <>
-      <Link to="/" className="flex items-center gap-1 text-gray-300 hover:text-white transition-colors">
+  return <>
+      <Link to="/" className="flex items-center gap-1 text-gray-300 hover:text-white transition-colors my-0 px-0 mx-[-8px]">
         <Home size={16} />
         <span>Inicio</span>
       </Link>
@@ -105,13 +82,14 @@ function NavLinks() {
         <LayoutDashboard size={16} />
         <span>Dashboard</span>
       </Link>
-    </>
-  );
+    </>;
 }
-
-function MobileNavLinks({ onItemClick }: { onItemClick: () => void }) {
-  return (
-    <>
+function MobileNavLinks({
+  onItemClick
+}: {
+  onItemClick: () => void;
+}) {
+  return <>
       <Link to="/" className="flex items-center gap-2 p-2 hover:bg-muted rounded-md" onClick={onItemClick}>
         <Home size={18} />
         <span>Inicio</span>
@@ -132,6 +110,5 @@ function MobileNavLinks({ onItemClick }: { onItemClick: () => void }) {
         <LayoutDashboard size={18} />
         <span>Dashboard</span>
       </Link>
-    </>
-  );
+    </>;
 }
