@@ -13,9 +13,17 @@ const __dirname = path.dirname(__filename);
 console.log('Construyendo la aplicación...');
 execSync('npm run build', { stdio: 'inherit' });
 
+// Verificar si la carpeta dist existe, y crearla si no
+const distPath = path.join(__dirname, 'dist');
+if (!fs.existsSync(distPath)) {
+  console.log('La carpeta dist no existe. Creándola...');
+  fs.mkdirSync(distPath, { recursive: true });
+}
+
 // Asegurarse de que el archivo .nojekyll esté en la carpeta dist
-const nojekyllPath = path.join(__dirname, 'dist', '.nojekyll');
+const nojekyllPath = path.join(distPath, '.nojekyll');
 if (!fs.existsSync(nojekyllPath)) {
+
   console.log('Creando archivo .nojekyll en dist...');
   fs.writeFileSync(nojekyllPath, '');
 }

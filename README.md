@@ -1,3 +1,4 @@
+
 ## Descripción
 
 Este es un proyecto base para una página de emprendimiento. Está construido con HTML, CSS y JavaScript, y utiliza el framework Bootstrap para el diseño responsive.
