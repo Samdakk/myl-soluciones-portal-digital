@@ -18,6 +18,7 @@ export default defineConfig(({ mode }: { mode: string }) => ({
     },
   },
   build: {
+    outDir: 'docs',
     rollupOptions: {
       input: {
         main: path.resolve(__dirname, 'docs/index.html')
