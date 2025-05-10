@@ -4,7 +4,7 @@ import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }: { mode: string }) => ({  
-  base: "/myl-soluciones-portal-digital/",
+  base: mode === 'production' ? '/myl-soluciones-portal-digital/' : '/',
   server: {
     host: "::",
     port: 8080,
