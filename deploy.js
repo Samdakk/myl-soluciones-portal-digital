@@ -30,6 +30,6 @@ if (!fs.existsSync(nojekyllPath)) {
 
 // Desplegar a GitHub Pages
 console.log('Desplegando a GitHub Pages...');
-execSync('npx gh-pages -d dist', { stdio: 'inherit' });
+execSync('npx gh-pages -d dist -r https://github.com/samdakk/myl-soluciones-portal-digital.git', { stdio: 'inherit' });
 
 console.log('¡Despliegue completado con éxito!');
