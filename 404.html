@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyL Soluciones - Redireccionando</title>
+  <script>
+    // Redirige todas las solicitudes a la página principal
+    // pero mantiene la URL original para que React Router pueda manejarla
+    const segment = window.location.pathname.split('/myl-soluciones-portal-digital/')[1];
+    window.location.href = '/myl-soluciones-portal-digital/' + (segment || '');
+  </script>
+</head>
+<body>
+  <p>Redireccionando...</p>
+</body>
+</html>
