@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Home, Wrench, Users, Phone, LogIn, LayoutDashboard } from "lucide-react";
+import { Menu, X, Home, Wrench, Users, Phone, LogIn, LayoutDashboard, User } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { AuthContext } from "@/App";
 export function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const isMobile = useIsMobile();
+  const { isAuthenticated, user } = useContext(AuthContext);
   const toggleMenu = () => setMenuOpen(!menuOpen);
   const closeMenu = () => setMenuOpen(false);
   return <header className="fixed top-0 left-0 right-0 z-50 glass animate-fade-in">
@@ -24,17 +26,28 @@ export function Navbar() {
         {!isMobile && <nav className="flex items-center gap-6">
             <NavLinks />
             <div className="flex items-center gap-2">
-              <Link to="/login">
-                <Button variant="outline" size="sm" className="border-myl">
-                  <LogIn className="mr-2 h-4 w-4" />
-                  Ingresar
-                </Button>
-              </Link>
-              <Link to="/register">
-                <Button className="bg-myl text-black hover:bg-myl-600">
-                  Registrarse
-                </Button>
-              </Link>
+              {isAuthenticated ? (
+                <Link to="/dashboard">
+                  <Button variant="outline" size="sm" className="border-myl">
+                    <User className="mr-2 h-4 w-4" />
+                    Mi Cuenta
+                  </Button>
+                </Link>
+              ) : (
+                <>
+                  <Link to="/login">
+                    <Button variant="outline" size="sm" className="border-myl">
+                      <LogIn className="mr-2 h-4 w-4" />
+                      Ingresar
+                    </Button>
+                  </Link>
+                  <Link to="/register">
+                    <Button className="bg-myl text-black hover:bg-myl-600">
+                      Registrarse
+                    </Button>
+                  </Link>
+                </>
+              )}
             </div>
           </nav>}
       </div>
@@ -44,17 +57,28 @@ export function Navbar() {
           <div className="container mx-auto px-4 py-4 flex flex-col gap-4">
             <MobileNavLinks onItemClick={closeMenu} />
             <div className="flex flex-col gap-2 mt-2">
-              <Link to="/login" onClick={closeMenu}>
-                <Button variant="outline" className="w-full border-myl">
-                  <LogIn className="mr-2 h-4 w-4" />
-                  Ingresar
-                </Button>
-              </Link>
-              <Link to="/register" onClick={closeMenu}>
-                <Button className="w-full bg-myl text-black hover:bg-myl-600">
-                  Registrarse
-                </Button>
-              </Link>
+              {isAuthenticated ? (
+                <Link to="/dashboard" onClick={closeMenu}>
+                  <Button variant="outline" className="w-full border-myl">
+                    <User className="mr-2 h-4 w-4" />
+                    Mi Cuenta
+                  </Button>
+                </Link>
+              ) : (
+                <>
+                  <Link to="/login" onClick={closeMenu}>
+                    <Button variant="outline" className="w-full border-myl">
+                      <LogIn className="mr-2 h-4 w-4" />
+                      Ingresar
+                    </Button>
+                  </Link>
+                  <Link to="/register" onClick={closeMenu}>
+                    <Button className="w-full bg-myl text-black hover:bg-myl-600">
+                      Registrarse
+                    </Button>
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         </div>}

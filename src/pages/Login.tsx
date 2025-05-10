@@ -1,15 +1,19 @@
 
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { MainLayout } from "@/components/layouts/MainLayout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
+import { AuthContext } from "@/App";
+import { Eye, EyeOff } from "lucide-react";
 
 const Login = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
+  const { login } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     password: ""
@@ -31,10 +35,13 @@ const Login = () => {
       // En una implementación real, aquí conectarías con tu API de autenticación
       // Por ahora, simulamos un login exitoso
       setTimeout(() => {
-        localStorage.setItem("myl-user", JSON.stringify({
+        const userData = {
           id: "user123",
           email: formData.email
-        }));
+        };
+        
+        // Usar el método login del contexto
+        login(userData);
         
         toast({
           title: "Inicio de sesión exitoso",
@@ -88,16 +95,26 @@ const Login = () => {
                   <label htmlFor="password" className="block text-sm font-medium mb-2">
                     Contraseña
                   </label>
-                  <Input
-                    id="password"
-                    name="password"
-                    type="password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    placeholder="••••••••"
-                    required
-                    className="bg-muted border-gray-700"
-                  />
+                  <div className="relative">
+                    <Input
+                      id="password"
+                      name="password"
+                      type={showPassword ? "text" : "password"}
+                      value={formData.password}
+                      onChange={handleChange}
+                      placeholder="••••••••"
+                      required
+                      className="bg-muted border-gray-700 pr-10"
+                    />
+                    <button
+                      type="button"
+                      className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-white"
+                      onClick={() => setShowPassword(!showPassword)}
+                      tabIndex={-1}
+                    >
+                      {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                    </button>
+                  </div>
                 </div>
                 
                 <div className="flex items-center justify-between">
